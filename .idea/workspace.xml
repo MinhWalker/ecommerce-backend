@@ -38,6 +38,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/cmd" />
     </key>
   </component>
@@ -57,5 +58,11 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600795490399">
+      <screen x="0" y="23" width="1792" height="1039" />
+    </state>
+    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1600795490399" />
   </component>
 </project>
