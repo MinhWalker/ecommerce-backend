@@ -2,8 +2,12 @@ package main
 
 import (
 	"ecommerce-backend/db"
+	"ecommerce-backend/handler"
 	"ecommerce-backend/model"
+	"ecommerce-backend/repository"
+	"ecommerce-backend/router"
 	"fmt"
+	"github.com/labstack/echo/v4"
 	"gopkg.in/yaml.v2"
 	"os"
 )
@@ -16,6 +20,20 @@ func main()  {
 	sql.Connect(&cfg)
 	defer sql.Close()
 
+	e := echo.New()
+
+	userHandler := handler.UserHandler{
+		UserRepo: repository.NewUserRepo(sql),
+	}
+
+	api := router.API{
+		Echo:	e,
+		UserHandler: userHandler,
+	}
+
+	api.SetupRouter()
+
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", cfg.Server.Port)))
 }
 
 func loadConfig(cfg *model.Config) {
