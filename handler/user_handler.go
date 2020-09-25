@@ -73,6 +73,18 @@ func (u UserHandler) HandleSignUp(c echo.Context) error {
 		})
 	}
 
+	//gen token
+	token, err := security.GenToken(user)
+	if err != nil {
+		log.Error(err)
+		return c.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+	user.Token = token
+
 	return c.JSON(http.StatusOK, model.Response{
 		StatusCode: http.StatusOK,
 		Message:    "Success to Save User!",
@@ -123,17 +135,17 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 		})
 	}
 
-	////gen token
-	//token, err := security.GenToken(user)
-	//if err != nil {
-	//	log.Error(err)
-	//	return c.JSON(http.StatusInternalServerError, model.Response{
-	//		StatusCode: http.StatusInternalServerError,
-	//		Message:    err.Error(),
-	//		Data:       nil,
-	//	})
-	//}
-	//user.Token = token
+	//gen token
+	token, err := security.GenToken(user)
+	if err != nil {
+		log.Error(err)
+		return c.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+	user.Token = token
 
 	return c.JSON(http.StatusOK, model.Response{
 		StatusCode: http.StatusOK,

@@ -1,6 +1,8 @@
 package model
 
-import "time"
+import (
+	"time"
+)
 
 type User struct {
 	UserID    string    `json:"-" db:"user_id, omitempty"`
@@ -13,4 +15,5 @@ type User struct {
 	Role      string    `json:"-" db:"role, omitempty"`
 	CreatedAt time.Time `json:"-" db:"created_at, omitempty"`
 	UpdateAt  time.Time `json:"-" db:"updated_at, omitempty"`
+	Token     string    `json:"token,omitempty"`
 }

@@ -31,27 +31,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9569617f-fbaf-4468-958e-0edea4edc526" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model/req/sign_in.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/req/sign_up.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env.dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/user_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/1_init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/1_init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/claims.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/claims.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/role.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/sign_up.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/user_repo_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/security/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/security/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/security/pass.go" beforeDir="false" afterPath="$PROJECT_DIR$/security/pass.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
