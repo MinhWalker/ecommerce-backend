@@ -1,4 +1,4 @@
-package model
+package req
 
 type SignUp struct {
 	FullName 	string `json:"fullName,omitempty"`

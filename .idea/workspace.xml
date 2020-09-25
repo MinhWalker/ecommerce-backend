@@ -1,7 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9569617f-fbaf-4468-958e-0edea4edc526" name="Default Changelist" comment="" />
+    <list default="true" id="9569617f-fbaf-4468-958e-0edea4edc526" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/model/req/sign_in.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/req/sign_up.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env.dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/user_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/1_init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/1_init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/claims.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/claims.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sign_up.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/user_repo_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/security/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security/pass.go" beforeDir="false" afterPath="$PROJECT_DIR$/security/pass.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,10 +66,16 @@
     </option>
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.15.1/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1hs6Mru4huU44pIdDRUyS7bZlhJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -28,7 +85,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,8 +95,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/model/req" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/cmd" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -56,13 +117,29 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600795490399">
+    <state x="251" y="379" key="#SQL_Dialects" timestamp="1600962575336">
       <screen x="0" y="23" width="1792" height="1039" />
     </state>
-    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1600795490399" />
+    <state x="251" y="379" key="#SQL_Dialects/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1600962575336" />
+    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600962600017">
+      <screen x="0" y="23" width="1792" height="1039" />
+    </state>
+    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1600962600017" />
   </component>
 </project>
