@@ -1,6 +1,7 @@
 package db
 
 import (
+	"ecommerce-backend/model"
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/gommon/log"
@@ -9,16 +10,15 @@ import (
 
 type Sql struct {
 	Db       *sqlx.DB
-	Host     string
-	Port     int
-	UserName string
-	Password string
-	DbName   string
 }
 
-func (s *Sql) Connect() {
-	dataSource := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		s.Host, s.Port, s.UserName, s.Password, s.DbName)
+func (s *Sql) Connect(cfg *model.Config) {
+	dataSource := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+					cfg.Database.DbHost,
+					cfg.Database.DbPort,
+					cfg.Database.DbUserName,
+					cfg.Database.DbPassword,
+					cfg.Database.DbName)
 
 	s.Db = sqlx.MustConnect("postgres", dataSource)
 
