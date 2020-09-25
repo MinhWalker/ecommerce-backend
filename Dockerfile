@@ -15,7 +15,7 @@ WORKDIR $GOPATH/src/ecommerce-backend
 
 COPY . .
 
-RUN go mod init backend-github-trending
+RUN go mod init ecommerce-backend
 
 WORKDIR cmd/pro
 RUN GOOS=linux go build -o app
