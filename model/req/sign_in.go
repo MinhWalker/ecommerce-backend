@@ -1,4 +1,4 @@
-package model
+package req
 
 type SignIn struct {
 	Email 		string `json:"email,omitempty"`
