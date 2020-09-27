@@ -11,7 +11,13 @@ type API struct {
 }
 
 func (api *API) SetupRouter() {
+
+	// User
 	user := api.Echo.Group("/user")
 	user.POST("/sign-up", api.UserHandler.HandleSignUp)
 	user.POST("/sign-in", api.UserHandler.HandleSignIn)
+
+	// Profile
+
+
 }

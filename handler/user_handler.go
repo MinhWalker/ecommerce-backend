@@ -2,7 +2,7 @@ package handler
 
 import (
 	"ecommerce-backend/model"
-	req2 "ecommerce-backend/model/req"
+	req "ecommerce-backend/model/req"
 	"ecommerce-backend/repository"
 	"ecommerce-backend/security"
 	"github.com/google/uuid"
@@ -29,7 +29,7 @@ type UserHandler struct {
 // @Failure 500 {object} model.Response
 // @Router /user/sign-up [post]
 func (u UserHandler) HandleSignUp(c echo.Context) error {
-	req := req2.SignUp{}
+	req := req.SignUp{}
 	if err := c.Bind(&req); err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusBadRequest, model.Response{
@@ -106,7 +106,7 @@ func (u UserHandler) HandleSignUp(c echo.Context) error {
 // @Failure 500 {object} model.Response
 // @Router /user/sign-in [post]
 func (u UserHandler) HandleSignIn(c echo.Context) error {
-	req := req2.SignIn{}
+	req := req.SignIn{}
 	if err := c.Bind(&req); err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusBadRequest, model.Response{
@@ -116,7 +116,7 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 		})
 	}
 
-	user, err := u.UserRepo.SelectUserByEmail(c.Request().Context(), req.Email)
+	user, err := u.UserRepo.CheckLogin(c.Request().Context(), req.Email)
 	if err != nil {
 		return c.JSON(http.StatusUnauthorized, model.Response{
 			StatusCode: http.StatusUnauthorized,

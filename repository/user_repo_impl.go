@@ -46,9 +46,11 @@ func (u UserRepoImpl) SaveUser(context context.Context, user model.User) (model.
 	return user, nil
 }
 
-func (u UserRepoImpl) SelectUserByEmail(context context.Context, email string) (model.User, error) {
+func (u UserRepoImpl) CheckLogin(context context.Context, email string) (model.User, error) {
 	var user = model.User{}
-	err := u.sql.Db.GetContext(context, &user, "SELECT * FROM users WHERE email=$1", email)
+
+	statement := `SELECT * FROM users WHERE email=$1`
+	err := u.sql.Db.GetContext(context, &user, statement, email)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
