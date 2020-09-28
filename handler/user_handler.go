@@ -156,6 +156,8 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 }
 
 func (u UserHandler) HandleProfile(c echo.Context) error {
+	//userId := c.Param("id")
+
 	tokenData := c.Get("user").(*jwt.Token)
 	claims := tokenData.Claims.(*model.JwtCustomClaims)
 
