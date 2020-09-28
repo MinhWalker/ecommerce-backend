@@ -9,16 +9,16 @@ import (
 )
 
 type Sql struct {
-	Db       *sqlx.DB
+	Db *sqlx.DB
 }
 
 func (s *Sql) Connect(cfg *model.Config) {
 	dataSource := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-					cfg.Database.DbHost,
-					cfg.Database.DbPort,
-					cfg.Database.DbUserName,
-					cfg.Database.DbPassword,
-					cfg.Database.DbName)
+		cfg.Database.DbHost,
+		cfg.Database.DbPort,
+		cfg.Database.DbUserName,
+		cfg.Database.DbPassword,
+		cfg.Database.DbName)
 
 	s.Db = sqlx.MustConnect("postgres", dataSource)
 

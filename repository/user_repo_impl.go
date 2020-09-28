@@ -16,7 +16,7 @@ type UserRepoImpl struct {
 }
 
 // NewUserRepo create object working with user logic
-func NewUserRepo(sql *db.Sql) UserRepo  {
+func NewUserRepo(sql *db.Sql) UserRepo {
 	return UserRepoImpl{
 		sql: sql,
 	}
@@ -79,5 +79,3 @@ func (u UserRepoImpl) GetUserById(context context.Context, userId string) (model
 
 	return user, nil
 }
-
-

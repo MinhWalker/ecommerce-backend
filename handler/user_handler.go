@@ -14,7 +14,7 @@ import (
 
 // UserHandler process all logic relate to user account
 type UserHandler struct {
-	UserRepo	repository.UserRepo
+	UserRepo repository.UserRepo
 }
 
 // HandleSignUp handle user sign up
@@ -54,14 +54,14 @@ func (u UserHandler) HandleSignUp(c echo.Context) error {
 	}
 
 	user := model.User{
-		UserID:    userID.String(),
-		Email:     req.Email,
-		Phone:     req.Phone,
-		Password:  hash,
-		Address:   req.Address,
-		FullName:  req.FullName,
-		Avatar:    req.Avatar,
-		Role:      role,
+		UserID:   userID.String(),
+		Email:    req.Email,
+		Phone:    req.Phone,
+		Password: hash,
+		Address:  req.Address,
+		FullName: req.FullName,
+		Avatar:   req.Avatar,
+		Role:     role,
 	}
 
 	user, err = u.UserRepo.SaveUser(c.Request().Context(), user)
@@ -158,8 +158,8 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 func (u UserHandler) HandleProfile(c echo.Context) error {
 	//userId := c.Param("id")
 
-	tokenData := c.Get("user").(*jwt.Token)
-	claims := tokenData.Claims.(*model.JwtCustomClaims)
+	tokenData := c.Get("user").(*jwt.Token)             // convert to jwt.Token type
+	claims := tokenData.Claims.(*model.JwtCustomClaims) // convert to model.JwtCustomClaims type
 
 	user, err := u.UserRepo.GetUserById(c.Request().Context(), claims.UserId)
 	if err != nil {
@@ -176,5 +176,3 @@ func (u UserHandler) HandleProfile(c echo.Context) error {
 		Data:       user,
 	})
 }
-
-

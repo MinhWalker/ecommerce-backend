@@ -1,6 +1,6 @@
 package req
 
 type SignIn struct {
-	Email 		string `json:"email,omitempty"`
-	Password	string `json:"password,omitempty"`
+	Email    string `json:"email,omitempty"`
+	Password string `json:"password,omitempty"`
 }

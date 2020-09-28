@@ -7,8 +7,8 @@ import (
 )
 
 type API struct {
-	Echo			*echo.Echo
-	UserHandler		handler.UserHandler
+	Echo        *echo.Echo
+	UserHandler handler.UserHandler
 }
 
 func (api *API) SetupRouter() {

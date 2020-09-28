@@ -13,7 +13,7 @@ import (
 	"strconv"
 )
 
-func main()  {
+func main() {
 	var cfg model.Config
 	loadConfig(&cfg)
 	setupEnv(&cfg)
@@ -29,7 +29,7 @@ func main()  {
 	}
 
 	api := router.API{
-		Echo:	e,
+		Echo:        e,
 		UserHandler: userHandler,
 	}
 
