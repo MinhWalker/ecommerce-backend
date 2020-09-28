@@ -10,4 +10,6 @@ type UserRepo interface {
 	SaveUser(context context.Context, user model.User) (model.User, error)
 	CheckLogin(context context.Context, email string) (model.User, error)
 	GetUserById(context context.Context, userId string) (model.User, error)
+
+	// Product
 }
