@@ -4,7 +4,7 @@ type Config struct {
 	Server struct{
 		Port		string 	`yaml:"port"`
 		Host 		string 	`yaml:"host"`
-		jwtExpires 	int 	`yaml:"jwtExpires"`
+		JwtExpires 	int 	`yaml:"jwtExpires"`
 	}
 	Database struct{
 		DbName		string 	`yaml:"dbName"`

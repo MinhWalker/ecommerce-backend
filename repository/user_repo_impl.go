@@ -63,4 +63,21 @@ func (u UserRepoImpl) CheckLogin(context context.Context, email string) (model.U
 	return user, nil
 }
 
+func (u UserRepoImpl) GetUserById(context context.Context, userId string) (model.User, error) {
+	var user = model.User{}
+
+	statement := `SELECT * FROM users WHERE user_id=$1`
+	err := u.sql.Db.GetContext(context, &user, statement, userId)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return user, exception.UserNotFound
+		}
+		log.Error(err.Error())
+		return user, err
+	}
+
+	return user, nil
+}
+
 

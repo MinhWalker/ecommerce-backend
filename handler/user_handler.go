@@ -5,6 +5,7 @@ import (
 	req "ecommerce-backend/model/req"
 	"ecommerce-backend/repository"
 	"ecommerce-backend/security"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
 	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
@@ -150,6 +151,26 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 	return c.JSON(http.StatusOK, model.Response{
 		StatusCode: http.StatusOK,
 		Message:    "Success to login",
+		Data:       user,
+	})
+}
+
+func (u UserHandler) HandleProfile(c echo.Context) error {
+	tokenData := c.Get("user").(*jwt.Token)
+	claims := tokenData.Claims.(*model.JwtCustomClaims)
+
+	user, err := u.UserRepo.GetUserById(c.Request().Context(), claims.UserId)
+	if err != nil {
+		return c.JSON(http.StatusUnauthorized, model.Response{
+			StatusCode: http.StatusUnauthorized,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Success!",
 		Data:       user,
 	})
 }

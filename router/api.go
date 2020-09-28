@@ -2,6 +2,7 @@ package router
 
 import (
 	"ecommerce-backend/handler"
+	"ecommerce-backend/middleware"
 	"github.com/labstack/echo/v4"
 )
 
@@ -16,8 +17,6 @@ func (api *API) SetupRouter() {
 	user := api.Echo.Group("/user")
 	user.POST("/sign-up", api.UserHandler.HandleSignUp)
 	user.POST("/sign-in", api.UserHandler.HandleSignIn)
-
-	// Profile
-
+	user.GET("/profile", api.UserHandler.HandleProfile, middleware.JWTMiddleware())
 
 }
