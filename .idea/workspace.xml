@@ -1,49 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9569617f-fbaf-4468-958e-0edea4edc526" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/repository/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo.go" afterDir="false" />
+    <list default="true" id="a9372c5d-de05-4273-8450-aaa5e1c2794b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/helper/job_queue.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Go File" />
-      </list>
-    </option>
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.15.1/libexec" />
   <component name="Git.Settings">
@@ -52,7 +17,7 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
-  <component name="ProjectId" id="1hs6Mru4huU44pIdDRUyS7bZlhJ" />
+  <component name="ProjectId" id="1iABlireAEn51WLoeCivjANU4a8" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -61,87 +26,31 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/model/req" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/cmd" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9569617f-fbaf-4468-958e-0edea4edc526" name="Default Changelist" comment="" />
-      <created>1600787408937</created>
+      <changelist id="a9372c5d-de05-4273-8450-aaa5e1c2794b" name="Default Changelist" comment="" />
+      <created>1601340668930</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600787408937</updated>
+      <updated>1601340668930</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="251" y="379" key="#SQL_Dialects" timestamp="1600962575336">
-      <screen x="0" y="23" width="1792" height="1039" />
-    </state>
-    <state x="251" y="379" key="#SQL_Dialects/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1600962575336" />
-    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600962600017">
-      <screen x="0" y="23" width="1792" height="1039" />
-    </state>
-    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1600962600017" />
-    <state x="100" y="123" width="1592" height="839" key="DiffContextDialog" timestamp="1601293437444">
-      <screen x="0" y="23" width="1792" height="1039" />
-    </state>
-    <state x="100" y="123" width="1592" height="839" key="DiffContextDialog/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1601293437444" />
-    <state x="694" y="463" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601293401047">
-      <screen x="0" y="23" width="1792" height="1039" />
-    </state>
-    <state x="694" y="463" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1601293401047" />
-    <state width="600" height="428" key="javadoc.popup" timestamp="1601294263632">
-      <screen x="0" y="23" width="1792" height="1039" />
-    </state>
-    <state width="600" height="428" key="javadoc.popup/1792.23.1920.1057/0.23.1792.1039@0.23.1792.1039" timestamp="1601294263632" />
   </component>
 </project>
