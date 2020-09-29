@@ -86,7 +86,7 @@ func (u UserRepoImpl) SelectUsers(context context.Context) ([]model.User, error)
 	var user []model.User
 
 	statement := `SELECT * FROM users ORDER BY created_at DESC`
-	err := u.sql.Db.GetContext(context, &user, statement)
+	err := u.sql.Db.SelectContext(context, &user, statement)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
