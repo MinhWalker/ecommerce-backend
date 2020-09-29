@@ -15,6 +15,8 @@ type UserRepoImpl struct {
 	sql *db.Sql
 }
 
+
+
 // NewUserRepo create object working with user logic
 func NewUserRepo(sql *db.Sql) UserRepo {
 	return UserRepoImpl{
@@ -72,6 +74,23 @@ func (u UserRepoImpl) GetUserById(context context.Context, userId string) (model
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return user, exception.UserNotFound
+		}
+		log.Error(err.Error())
+		return user, err
+	}
+
+	return user, nil
+}
+
+func (u UserRepoImpl) SelectUsers(context context.Context) ([]model.User, error) {
+	var user []model.User
+
+	statement := `SELECT * FROM users ORDER BY created_at DESC`
+	err := u.sql.Db.GetContext(context, &user, statement)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return user, exception.UserEmpty
 		}
 		log.Error(err.Error())
 		return user, err

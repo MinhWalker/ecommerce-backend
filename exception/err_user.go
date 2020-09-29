@@ -7,4 +7,5 @@ var (
 	SignUpFail     = errors.New("Fail to create account!")
 	UserNotFound   = errors.New("Can't not find user")
 	UserNotUpdated = errors.New("Can't not update user!")
+	UserEmpty 	   = errors.New("Empty users list")
 )
