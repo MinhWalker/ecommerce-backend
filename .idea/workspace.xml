@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9372c5d-de05-4273-8450-aaa5e1c2794b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/err_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception/err_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/user_repo_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/user_handler.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

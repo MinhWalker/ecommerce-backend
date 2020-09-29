@@ -155,6 +155,16 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 	})
 }
 
+// HandleProfile handle user profile
+// Profile godoc
+// @Summary access user login
+// @Tags user-service
+// @Accept  json
+// @Produce  json
+// @Param data body req.RepSignIn true "user"
+// @Success 200 {object} model.Response
+// @Failure 401 {object} model.Response
+// @Router /user/profile [get]
 func (u UserHandler) HandleProfile(c echo.Context) error {
 	//userId := c.Param("id")
 
