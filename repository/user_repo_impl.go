@@ -83,18 +83,18 @@ func (u UserRepoImpl) GetUserById(context context.Context, userId string) (model
 }
 
 func (u UserRepoImpl) SelectUsers(context context.Context) ([]model.User, error) {
-	var user []model.User
+	var users []model.User
 
 	statement := `SELECT * FROM users ORDER BY created_at DESC`
-	err := u.sql.Db.SelectContext(context, &user, statement)
+	err := u.sql.Db.SelectContext(context, &users, statement)	// Select many record
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return user, exception.UserEmpty
+			return users, exception.UserEmpty
 		}
 		log.Error(err.Error())
-		return user, err
+		return users, err
 	}
 
-	return user, nil
+	return users, nil
 }
