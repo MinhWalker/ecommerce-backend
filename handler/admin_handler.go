@@ -2,7 +2,7 @@ package handler
 
 import (
 	"ecommerce-backend/model"
-	req "ecommerce-backend/model/req"
+	"ecommerce-backend/model/req"
 	"ecommerce-backend/repository"
 	"ecommerce-backend/security"
 	"github.com/dgrijalva/jwt-go"
@@ -12,24 +12,57 @@ import (
 	"net/http"
 )
 
-// UserHandler process all logic relate to user account
-type UserHandler struct {
+type AdminHandler struct {
 	UserRepo repository.UserRepo
 }
 
-// HandleSignUp handle user sign up
+// GenToken handle admin
+// Profile godoc
+// @Summary create Token for admin
+// @Tags user-service
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} model.Response
+// @Router /admin/token [get]
+func (a AdminHandler) GenToken(c echo.Context) error {
+	userId, _ := uuid.NewUUID()
+	token, _ := security.GenToken(model.User{
+		UserID:    userId.String(),
+		Role:      model.ADMIN.String(),
+	})
+
+	return c.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Success to gen token!",
+		Data:       token,
+	})
+}
+
+// HandleSignUp handle admin sign up
 // SignUp godoc
-// @Summary Create new account
+// @Summary Create new account for admin
 // @Tags user-service
 // @Accept  json
 // @Produce  json
 // @Param data body req.ReqSignUp true "user"
 // @Success 200 {object} model.Response
 // @Failure 400 {object} model.Response
+// @Failure 403 {object} model.Response
 // @Failure 404 {object} model.Response
 // @Failure 500 {object} model.Response
-// @Router /user/sign-up [post]
-func (u UserHandler) HandleSignUp(c echo.Context) error {
+// @Router /admin/sign-up [post]
+func (a AdminHandler) HandleSignUp(c echo.Context) error {
+	tokenData := c.Get("user").(*jwt.Token)
+	claims := tokenData.Claims.(*model.JwtCustomClaims)
+
+	if claims.Role != model.ADMIN.String() {
+		return c.JSON(http.StatusForbidden, model.Response{
+			StatusCode: http.StatusForbidden,
+			Message:    http.StatusText(http.StatusForbidden),
+			Data:       nil,
+		})
+	}
+
 	req := req.SignUp{}
 	if err := c.Bind(&req); err != nil {
 		log.Error(err.Error())
@@ -41,7 +74,7 @@ func (u UserHandler) HandleSignUp(c echo.Context) error {
 	}
 
 	hash := security.HashAndSalt([]byte(req.Password))
-	role := model.MEMBER.String()
+	role := claims.Role
 
 	userID, err := uuid.NewUUID()
 	if err != nil {
@@ -64,7 +97,7 @@ func (u UserHandler) HandleSignUp(c echo.Context) error {
 		Role:     role,
 	}
 
-	user, err = u.UserRepo.SaveUser(c.Request().Context(), user)
+	user, err = a.UserRepo.SaveUser(c.Request().Context(), user)
 	if err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusConflict, model.Response{
@@ -94,19 +127,20 @@ func (u UserHandler) HandleSignUp(c echo.Context) error {
 
 }
 
-// HandleSignIn handle user sign in
+// HandleSignIn handle admin sign in
 // SignIn godoc
-// @Summary access user login
+// @Summary access admin login
 // @Tags user-service
 // @Accept  json
 // @Produce  json
 // @Param data body req.RepSignIn true "user"
 // @Success 200 {object} model.Response
 // @Failure 400 {object} model.Response
+// @Failure 403 {object} model.Response
 // @Failure 401 {object} model.Response
 // @Failure 500 {object} model.Response
-// @Router /user/sign-in [post]
-func (u UserHandler) HandleSignIn(c echo.Context) error {
+// @Router /admin/sign-in [post]
+func (a AdminHandler) HandleSignIn(c echo.Context) error {
 	req := req.SignIn{}
 	if err := c.Bind(&req); err != nil {
 		log.Error(err.Error())
@@ -117,11 +151,20 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 		})
 	}
 
-	user, err := u.UserRepo.CheckLogin(c.Request().Context(), req.Email)
+	user, err := a.UserRepo.CheckLogin(c.Request().Context(), req.Email)
 	if err != nil {
 		return c.JSON(http.StatusUnauthorized, model.Response{
 			StatusCode: http.StatusUnauthorized,
 			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+	
+	//check role ADMIN
+	if user.Role != model.ADMIN.String() {
+		return c.JSON(http.StatusForbidden, model.Response{
+			StatusCode: http.StatusForbidden,
+			Message:    http.StatusText(http.StatusForbidden),
 			Data:       nil,
 		})
 	}
@@ -152,54 +195,5 @@ func (u UserHandler) HandleSignIn(c echo.Context) error {
 		StatusCode: http.StatusOK,
 		Message:    "Success to login",
 		Data:       user,
-	})
-}
-
-// HandleProfile handle user profile
-// Profile godoc
-// @Summary return user profile by token
-// @Tags user-service
-// @Accept  json
-// @Produce  json
-// @Param Authorization bearer Token true "user"
-// @Success 200 {object} model.Response
-// @Failure 401 {object} model.Response
-// @Router /user/profile [get]
-func (u UserHandler) HandleProfile(c echo.Context) error {
-	//userId := c.Param("id")
-
-	tokenData := c.Get("user").(*jwt.Token)             // convert to jwt.Token type
-	claims := tokenData.Claims.(*model.JwtCustomClaims) // convert to model.JwtCustomClaims type
-
-	user, err := u.UserRepo.GetUserById(c.Request().Context(), claims.UserId)
-	if err != nil {
-		return c.JSON(http.StatusUnauthorized, model.Response{
-			StatusCode: http.StatusUnauthorized,
-			Message:    err.Error(),
-			Data:       nil,
-		})
-	}
-
-	return c.JSON(http.StatusOK, model.Response{
-		StatusCode: http.StatusOK,
-		Message:    "Success!",
-		Data:       user,
-	})
-}
-
-func(u UserHandler) HandleListUsers(c echo.Context) error {
-	users, err := u.UserRepo.SelectUsers(c.Request().Context())
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, model.Response{
-			StatusCode: http.StatusInternalServerError,
-			Message:    err.Error(),
-			Data:       nil,
-		})
-	}
-
-	return c.JSON(http.StatusOK, model.Response{
-		StatusCode: http.StatusOK,
-		Message:    "Success!",
-		Data:       users,
 	})
 }
