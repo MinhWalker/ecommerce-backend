@@ -26,7 +26,7 @@ func (api *API) SetupAdminRouter() {
 	// Admin
 	admin := api.Echo.Group("/admin")
 	admin.GET("/token", api.AdminHandler.GenToken)
-	admin.POST("/sign-up", api.AdminHandler.HandleSignUp)
+	admin.POST("/sign-up", api.AdminHandler.HandleSignUp, middleware.JWTMiddleware())
 	admin.POST("/sign-in", api.AdminHandler.HandleSignIn)
 
 }

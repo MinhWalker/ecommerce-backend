@@ -1,4 +1,4 @@
-package gen
+package main
 
 import (
 	"ecommerce-backend/db"
@@ -35,9 +35,14 @@ func main() {
 		UserRepo: repository.NewUserRepo(sql),
 	}
 
+	adminHandler := handler.AdminHandler{
+		UserRepo: repository.NewUserRepo(sql),
+	}
+
 	api := router.API{
 		Echo:        e,
 		UserHandler: userHandler,
+		AdminHandler: adminHandler,
 	}
 
 	api.SetupAdminRouter()
@@ -53,7 +58,7 @@ func setupEnv(cfg *model.Config) {
 }
 
 func loadConfig(cfg *model.Config) {
-	f, err := os.Open("../env.dev.yml")
+	f, err := os.Open("../../env.dev.yml")
 	if err != nil {
 		fmt.Println(err)
 	}
