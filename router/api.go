@@ -19,7 +19,7 @@ func (api *API) SetupRouter() {
 	user.POST("/sign-in", api.UserHandler.HandleSignIn)
 	user.GET("/profile", api.UserHandler.HandleProfile, middleware.JWTMiddleware())
 	user.GET("/list", api.UserHandler.HandleListUsers, middleware.JWTMiddleware())
-
+	user.PUT("/update", api.UserHandler.HandleUpdateUsers, middleware.JWTMiddleware())
 }
 
 func (api *API) SetupAdminRouter() {

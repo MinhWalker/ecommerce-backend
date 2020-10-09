@@ -187,6 +187,16 @@ func (u UserHandler) HandleProfile(c echo.Context) error {
 	})
 }
 
+// HandleListUsers handle list Users
+// Profile godoc
+// @Summary return user profile by token
+// @Tags user-service
+// @Accept  json
+// @Produce  json
+// @Param Authorization bearer Token true "user"
+// @Success 200 {object} model.Response
+// @Failure 500 {object} model.Response
+// @Router /user/list [get]
 func(u UserHandler) HandleListUsers(c echo.Context) error {
 	users, err := u.UserRepo.SelectUsers(c.Request().Context())
 	if err != nil {
@@ -201,5 +211,57 @@ func(u UserHandler) HandleListUsers(c echo.Context) error {
 		StatusCode: http.StatusOK,
 		Message:    "Success!",
 		Data:       users,
+	})
+}
+
+// UpdateProfile godoc
+// @Summary get user profile
+// @Tags user-service
+// @Accept  json
+// @Produce  json
+// @Param data body req.ReqUpdateUser true "user"
+// @Security jwt
+// @Success 200 {object} model.Response
+// @Failure 500 {object} model.Response
+// @Router /user/profile/update [put]
+func(u UserHandler) HandleUpdateUsers(c echo.Context) error  {
+	req := req.ReqUpdate{}
+
+	if err := c.Bind(&req); err != nil {
+		return err
+	}
+
+	// validate thông tin gửi lên
+	err := c.Validate(req)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, model.Response{
+			StatusCode: http.StatusBadRequest,
+			Message:    err.Error(),
+		})
+	}
+
+	tokenData := c.Get("user").(*jwt.Token)
+	claims := tokenData.Claims.(*model.JwtCustomClaims)
+	user := model.User{
+		UserID:   claims.UserId,
+		FullName: req.FullName,
+		Email:    req.Email,
+		Phone: req.Phone,
+		Address: req.Address,
+		Avatar: req.Avatar,
+	}
+
+	user, err = u.UserRepo.UpdateUser(c.Request().Context(), user)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, model.Response{
+			StatusCode: http.StatusUnprocessableEntity,
+			Message:    err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusCreated, model.Response{
+		StatusCode: http.StatusCreated,
+		Message:    "Xử lý thành công",
+		Data:       user,
 	})
 }

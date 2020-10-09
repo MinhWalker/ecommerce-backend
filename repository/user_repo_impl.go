@@ -98,3 +98,37 @@ func (u UserRepoImpl) SelectUsers(context context.Context) ([]model.User, error)
 
 	return users, nil
 }
+
+func (u UserRepoImpl) UpdateUser(context context.Context, user model.User) (model.User, error) {
+	sqlStatement := `
+		UPDATE users
+		SET 
+			full_name  = (CASE WHEN LENGTH(:full_name) = 0 THEN full_name ELSE :full_name END),
+			email = (CASE WHEN LENGTH(:email) = 0 THEN email ELSE :email END),
+			phone = (CASE WHEN LENGTH(:phone) = 0 THEN phone ELSE :phone END),
+			address = (CASE WHEN LENGTH(:address) = 0 THEN address ELSE :address END),
+			avatar = (CASE WHEN LENGTH(:avatar) = 0 THEN avatar ELSE :avatar END),
+			updated_at 	  = COALESCE (:updated_at, updated_at)
+		WHERE user_id    = :user_id
+	`
+
+	user.UpdateAt = time.Now()
+
+	result, err := u.sql.Db.NamedExecContext(context, sqlStatement, user)
+	if err != nil {
+		log.Error(err.Error())
+		return user, err
+	}
+
+	count, err := result.RowsAffected()
+	if err != nil {
+		log.Error(err.Error())
+		return user, exception.UserNotUpdated
+	}
+	if count == 0 {
+		return user, exception.UserNotUpdated
+	}
+
+	return user, nil
+
+}
