@@ -2,28 +2,21 @@ package middleware
 
 import (
 	"ecommerce-backend/model"
-	"ecommerce-backend/model/req"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
 
-func IsAdmin() echo.MiddlewareFunc {
+func CheckAdminRole() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
-			//handle logic
-			req := req.SignIn{}
-			if err := c.Bind(&req); err != nil {
-				return c.JSON(http.StatusBadRequest, model.Response{
-					StatusCode: http.StatusBadRequest,
-					Message:    err.Error(),
-					Data:       nil,
-				})
-			}
+			tokenData := c.Get("user").(*jwt.Token)
+			claims := tokenData.Claims.(*model.JwtCustomClaims)
 
-			if req.Email != "admin@gmail.com" {
-				return c.JSON(http.StatusBadRequest, model.Response{
-					StatusCode: http.StatusBadRequest,
-					Message:    "You don't have permission to call this api",
+			if claims.Role != model.ADMIN.String() {
+				return c.JSON(http.StatusForbidden, model.Response{
+					StatusCode: http.StatusForbidden,
+					Message:    "Không cho phép truy cập",
 					Data:       nil,
 				})
 			}

@@ -10,6 +10,7 @@ type API struct {
 	Echo        *echo.Echo
 	UserHandler handler.UserHandler
 	AdminHandler handler.AdminHandler
+	CateHandler handler.CateHandler
 }
 
 func (api *API) SetupRouter() {
@@ -20,6 +21,14 @@ func (api *API) SetupRouter() {
 	user.GET("/profile", api.UserHandler.HandleProfile, middleware.JWTMiddleware())
 	user.GET("/list", api.UserHandler.HandleListUsers, middleware.JWTMiddleware())
 	user.PUT("/update", api.UserHandler.HandleUpdateUsers, middleware.JWTMiddleware())
+
+	// categories
+	categories := api.Echo.Group("/cate", middleware.JWTMiddleware(), middleware.CheckAdminRole())
+	categories.POST("/add", api.CateHandler.HandleAddCate)
+	categories.PUT("/edit", api.CateHandler.HandleEditCate)
+	categories.GET("/detail/:id", api.CateHandler.HandleCateDetail)
+	categories.GET("/list", api.CateHandler.HandleCateList)
+	categories.DELETE("/delete", api.CateHandler.HandleDeleteCate)
 }
 
 func (api *API) SetupAdminRouter() {

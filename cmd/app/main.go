@@ -31,6 +31,7 @@ func main() {
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
 	}))
 
+	// User and Admin
 	userHandler := handler.UserHandler{
 		UserRepo: repository.NewUserRepo(sql),
 	}
@@ -39,10 +40,16 @@ func main() {
 		UserRepo: repository.NewUserRepo(sql),
 	}
 
+	// Product
+	cateHandler := handler.CateHandler{
+		CateRepo: repository.NewCateRepo(sql),
+	}
+
 	api := router.API{
 		Echo:        e,
 		UserHandler: userHandler,
 		AdminHandler: adminHandler,
+		CateHandler: cateHandler,
 	}
 
 	api.SetupRouter()

@@ -31,12 +31,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9372c5d-de05-4273-8450-aaa5e1c2794b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/2_product_module_cate.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/req/update_user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception/err_cate.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/handler/cate_handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/cate.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/cate_repo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/cate_repo_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/user_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/user_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/user_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/user_repo_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/user_repo_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/app/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/app/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/check_admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/check_admin.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/api.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,5 +116,15 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="251" y="376" key="#SQL_Dialects" timestamp="1602226261235">
+      <screen x="0" y="23" width="1792" height="1039" />
+    </state>
+    <state x="251" y="376" key="#SQL_Dialects/0.23.1792.1039@0.23.1792.1039" timestamp="1602226261235" />
+    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602226245337">
+      <screen x="0" y="23" width="1792" height="1039" />
+    </state>
+    <state x="496" y="208" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1039@0.23.1792.1039" timestamp="1602226245337" />
   </component>
 </project>
