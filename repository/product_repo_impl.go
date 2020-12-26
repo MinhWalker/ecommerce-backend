@@ -17,6 +17,12 @@ type ProductRepoImpl struct {
 	sql *db.Sql
 }
 
+func NewProductRepo(sql *db.Sql) ProductRepo {
+	return ProductRepoImpl{
+		sql: sql,
+	}
+}
+
 func (p ProductRepoImpl) SaveProduct(context context.Context, product model.Product) (model.Product, error) {
 	statement := `
 			INSERT INTO products(
@@ -80,7 +86,67 @@ func (p ProductRepoImpl) AddProductAttribute(context context.Context, productId 
 }
 
 func (p ProductRepoImpl) UpdateProduct(context context.Context, product model.Product) error {
-	panic("implement me")
+	statementUpdateAttributes := `
+		UPDATE attributes 
+		SET 
+			product_id = :product_id,
+			collection_id = :collection_id,
+			attr_name = :attr_name,
+			size = :size,
+			price = :price,
+			promotion = :promotion,
+			quantity = :quantity,
+			created_at = :created_at,
+			updated_at = :updated_at
+		WHERE attr_id = :attr_id
+	`
+
+	statementUpdateProduct := `
+		UPDATE products 
+		SET 
+			product_name = :product_name,
+			product_image = :product_image,
+			product_des = :product_des,
+			cate_id = :cate_id,
+			collection_id = :collection_id,
+			created_at = :created_at,
+			updated_at = :updated_at
+		WHERE product_id = :product_id
+	`
+
+	shouldRollback := false
+	tx := p.sql.Db.MustBegin()
+	_, errPro := tx.NamedExecContext(context, statementUpdateProduct, product)
+	if errPro != nil {
+		log.Error(errPro.Error())
+		tx.Rollback()
+		return errors.New("Fail to update product!")
+	}
+
+	for _, attr := range product.Attributes {
+		attr.ProductId = product.ProductId
+		attr.CollectionId = product.CollectionId
+
+		now := time.Now()
+		attr.CreatedAt = now
+		attr.UpdatedAt = now
+
+		_, err := tx.NamedExecContext(context, statementUpdateAttributes, attr)
+		if err != nil {
+			shouldRollback = true
+			log.Error(err.Error())
+			break
+		}
+	}
+
+	if shouldRollback {
+		tx.Rollback()
+		return errors.New("Fail to update attributes!")
+	}
+
+	tx.Commit()
+
+	return nil
 }
 
 func (p ProductRepoImpl) SelectProductById(context context.Context, productId string) (model.Product, error) {
@@ -115,11 +181,20 @@ func (p ProductRepoImpl) SelectProductById(context context.Context, productId st
 }
 
 func (p ProductRepoImpl) SelectProducts(context context.Context) ([]model.Product, error) {
-	panic("implement me")
+	var products []model.Product
+	sql := `SELECT
+	      products.*,
+	      attributes.attr_id,
+	      attributes.collection_id,
+	      attributes.attr_name,
+	      attributes.size,
+	      attributes.price,
+	      attributes.promotion,
+	      attributes.quantity
+	    FROM
+	      products JOIN attributes 
+	      ON products.product_id = attributes.p_id;`
+	err := p.sql.Db.Select(&products, sql)
+	return products, err
 }
 
-func NewProductRepo(sql *db.Sql) ProductRepo {
-	return ProductRepoImpl{
-		sql: sql,
-	}
-}
