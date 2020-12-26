@@ -29,6 +29,12 @@ func (api *API) SetupRouter() {
 	categories.GET("/detail/:id", api.CateHandler.HandleCateDetail)
 	categories.GET("/list", api.CateHandler.HandleCateList)
 	categories.DELETE("/delete", api.CateHandler.HandleDeleteCate)
+
+	// product
+	//product := api.Echo.Group("/product",
+	//	middleware.CheckAdminRole(),
+	//	middleware.JWTMiddleware())
+
 }
 
 func (api *API) SetupAdminRouter() {
