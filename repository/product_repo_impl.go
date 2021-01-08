@@ -70,10 +70,10 @@ func (p ProductRepoImpl) AddProductAttribute(context context.Context, productId 
 
 		_, err := tx.NamedExecContext(context, statement, attr)
 		if err != nil {
+			tx.Rollback()
 			log.Error(err.Error())
 			if err, ok := err.(*pq.Error); ok {
 				if err.Code.Name() == "unique_violation" {
-					tx.Commit()
 					return errors.New("Product Attribute had exits!")
 				}
 			}

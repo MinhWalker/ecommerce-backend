@@ -32,6 +32,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a9372c5d-de05-4273-8450-aaa5e1c2794b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/3_product_module_product.collection.attrs.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/3_product_module_product.collection.attrs.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/product_repo_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/product_repo_impl.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
