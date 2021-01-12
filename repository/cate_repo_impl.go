@@ -6,6 +6,7 @@ import (
 	"ecommerce-backend/db"
 	"ecommerce-backend/exception"
 	"ecommerce-backend/model"
+	"errors"
 	"github.com/labstack/gommon/log"
 	"github.com/lib/pq"
 	"time"
@@ -24,10 +25,9 @@ func NewCateRepo(sql *db.Sql) CateRepo {
 
 func (c CateRepoImpl) SaveCate(context context.Context, cate model.Cate) (model.Cate, error) {
 	statement := `
-			INSERT INTO categories(cate_id, cate_name, cate_image, created_at, updated_at)
-			VALUES(:cate_id, :cate_name, :cate_image, :created_at, :updated_at)
+		INSERT INTO categories(cate_id, cate_name, cate_image, created_at, updated_at)								
+		VALUES(:cate_id, :cate_name, :cate_image, :created_at, :updated_at)
 	`
-
 	now := time.Now()
 	cate.CreatedAt = now
 	cate.UpdatedAt = now
@@ -37,19 +37,20 @@ func (c CateRepoImpl) SaveCate(context context.Context, cate model.Cate) (model.
 		log.Error(err.Error())
 		if err, ok := err.(*pq.Error); ok {
 			if err.Code.Name() == "unique_violation" {
-				return cate, exception.CateConflict
+				return cate, errors.New("Danh mục này đã tồn tại")
 			}
 		}
-		return cate, exception.SignUpFail
+		return cate, errors.New("Tạo danh mục thất bại")
 	}
 
 	return cate, nil
 }
 
+
 func (c CateRepoImpl) DeleteCate(context context.Context, cateId string) error {
 	result := c.sql.Db.MustExecContext(
 		context,
-		"DELETE FROM bookmarks WHERE cate_id = $1", cateId)
+		"DELETE FROM categories WHERE cate_id = $1", cateId)
 
 	_, err := result.RowsAffected()
 	if err != nil {

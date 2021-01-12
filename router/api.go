@@ -11,6 +11,7 @@ type API struct {
 	UserHandler handler.UserHandler
 	AdminHandler handler.AdminHandler
 	CateHandler handler.CateHandler
+	ProductHandler handler.ProductHandler
 }
 
 func (api *API) SetupRouter() {
@@ -28,12 +29,14 @@ func (api *API) SetupRouter() {
 	categories.PUT("/edit", api.CateHandler.HandleEditCate)
 	categories.GET("/detail/:id", api.CateHandler.HandleCateDetail)
 	categories.GET("/list", api.CateHandler.HandleCateList)
-	categories.DELETE("/delete", api.CateHandler.HandleDeleteCate)
+	//categories.DELETE("/delete", api.CateHandler.HandleDeleteCate)		//update last
 
 	// product
-	//product := api.Echo.Group("/product",
-	//	middleware.CheckAdminRole(),
-	//	middleware.JWTMiddleware())
+	product := api.Echo.Group("/product", middleware.JWTMiddleware(), middleware.CheckAdminRole())
+	product.POST("/add", api.ProductHandler.HandleAddProduct)
+	product.GET("/detail/:id", api.ProductHandler.HandleProductDetail)
+	product.GET("/list", api.ProductHandler.HandleProductList)
+	product.PUT("/edit", api.ProductHandler.HandleEditProduct)
 
 }
 
