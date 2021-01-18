@@ -32,7 +32,6 @@ func (p ProductHandler) HandleAddProduct(context echo.Context) error {
 		fmt.Println(p.AttributesDb)
 	}
 
-
 	productId, err := uuid.NewUUID()
 	if err != nil {
 		return context.JSON(http.StatusInternalServerError, model.Response{
@@ -64,7 +63,7 @@ func (p ProductHandler) HandleAddProduct(context echo.Context) error {
 
 	return context.JSON(http.StatusOK, model.Response{
 		StatusCode: http.StatusOK,
-		Message:    "Success!",
+		Message:    "Xử lý thành công",
 		Data:       nil,
 	})
 }

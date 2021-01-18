@@ -19,9 +19,9 @@ CREATE TABLE "collections" (
 
 CREATE TABLE "attributes" (
   "attr_id" varchar(255) PRIMARY KEY,
-  "product_id" varchar(255) NOT NULL,
-  "collection_id" varchar(255) NOT NULL,
-  "attr_name" varchar(255) NOT NULL,
+  "p_id" varchar(255) NOT NULL,
+  "col_id" varchar(255) NOT NULL,
+  "attr_name" varchar(255)  NOT NULL,
   "size" int NOT NULL,
   "price" decimal(15,2) NOT NULL,
   "promotion" numeric,

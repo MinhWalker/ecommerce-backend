@@ -51,14 +51,14 @@ func (p ProductRepoImpl) SaveProduct(context context.Context, product model.Prod
 func (p ProductRepoImpl) AddProductAttribute(context context.Context, productId string, collectionId string, attributes []model.Attribute) error {
 	statement := `
 		INSERT INTO attributes(
-				attr_id, product_id, collection_id, attr_name, size, 
+				attr_id, p_id, col_id, attr_name, size, 
 				price, promotion, quantity, created_at, updated_at)
-		VALUES(:attr_id, :product_id, :collection_id, :attr_name, 
+		VALUES(:attr_id, :p_id, :col_id, :attr_name, 
 				:size, :price, :promotion, :quantity, :created_at, :updated_at)
 	`
 
 	tx := p.sql.Db.MustBegin()
-	for _, attr := range attributes{
+	for _, attr := range attributes {
 		uuid, _ := uuid.NewUUID()
 		attr.AttrId = uuid.String()
 		attr.ProductId = productId
@@ -74,14 +74,14 @@ func (p ProductRepoImpl) AddProductAttribute(context context.Context, productId 
 			log.Error(err.Error())
 			if err, ok := err.(*pq.Error); ok {
 				if err.Code.Name() == "unique_violation" {
-					return errors.New("Product Attribute had exits!")
+					return errors.New("Attribute has exits!")
 				}
 			}
-			tx.Commit()
-			return errors.New("Fall to add new Attribute!")
+			return errors.New("fail to add new Attribute")
 		}
 	}
 	tx.Commit()
+
 	return nil
 }
 
@@ -185,15 +185,16 @@ func (p ProductRepoImpl) SelectProducts(context context.Context) ([]model.Produc
 	sql := `SELECT
 	      products.*,
 	      attributes.attr_id,
-	      attributes.collection_id,
+	      attributes.col_id,
 	      attributes.attr_name,
 	      attributes.size,
 	      attributes.price,
 	      attributes.promotion,
-	      attributes.quantity
-	    FROM
-	      products JOIN attributes 
-	      ON products.product_id = attributes.p_id;`
+	      attributes.quantity,
+	      categories.cate_name
+	    FROM products 
+	      INNER JOIN attributes ON products.product_id = attributes.p_id
+	      INNER JOIN categories ON products.cate_id = categories.cate_id;`
 	err := p.sql.Db.Select(&products, sql)
 	return products, err
 }
