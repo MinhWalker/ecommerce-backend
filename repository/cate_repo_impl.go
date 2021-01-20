@@ -64,7 +64,8 @@ func (c CateRepoImpl) DeleteCate(context context.Context, cateId string) error {
 func (c CateRepoImpl) UpdateCate(context context.Context, cate model.Cate) error {
 	statement := `UPDATE categories
 				  SET cate_name = :cate_name, 
-					  cate_image = :cate_image 
+					  cate_image = :cate_image,
+					  updated_at = :updated_at
 				  WHERE cate_id=:cate_id;`
 
 	cate.UpdatedAt = time.Now()
@@ -92,8 +93,8 @@ func (c CateRepoImpl) SelectCateById(context context.Context, cateId string) (mo
 func (c CateRepoImpl) SelectCates(context context.Context) ([]model.Cate, error) {
 	var cates []model.Cate
 
-	statement := `SELECT * FROM categories ORDER BY created_at DESC`
-	err := c.sql.Db.SelectContext(context, &cates, statement)	// Select many record
+	statement := `SELECT * FROM categories ORDER BY updated_at DESC`
+	err := c.sql.Db.SelectContext(context, &cates, statement)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -102,7 +103,6 @@ func (c CateRepoImpl) SelectCates(context context.Context) ([]model.Cate, error)
 		log.Error(err.Error())
 		return cates, err
 	}
-
 	return cates, nil
 }
 

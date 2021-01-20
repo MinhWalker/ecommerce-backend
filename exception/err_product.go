@@ -4,5 +4,6 @@ import "errors"
 
 var (
 	// product
-	ProductNotFound = errors.New("Sản phẩm không tồn tại")
+	ProductNotFound = errors.New("Product not found!")
+	ProductEmpty = errors.New("Product empty!")
 )

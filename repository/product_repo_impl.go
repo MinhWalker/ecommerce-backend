@@ -89,8 +89,8 @@ func (p ProductRepoImpl) UpdateProduct(context context.Context, product model.Pr
 	statementUpdateAttributes := `
 		UPDATE attributes 
 		SET 
-			product_id = :product_id,
-			collection_id = :collection_id,
+			p_id = :p_id,
+			col_id = :col_id,
 			attr_name = :attr_name,
 			size = :size,
 			price = :price,
@@ -164,12 +164,12 @@ func (p ProductRepoImpl) SelectProductById(context context.Context, productId st
 		return product, err
 	}
 
-	statement = `SELECT * FROM attributes WHERE product_id=$1`
+	statement = `SELECT * FROM attributes WHERE p_id=$1`
 	err = p.sql.Db.SelectContext(context, &attrs, statement, productId)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return product, errors.New("Product don't have this attribute!")
+			return product, errors.New("This product don't have any attribute!")
 		}
 		log.Error(err.Error())
 		return product, err
@@ -182,7 +182,7 @@ func (p ProductRepoImpl) SelectProductById(context context.Context, productId st
 
 func (p ProductRepoImpl) SelectProducts(context context.Context) ([]model.Product, error) {
 	var products []model.Product
-	sql := `SELECT
+	statement := `SELECT
 	      products.*,
 	      attributes.attr_id,
 	      attributes.col_id,
@@ -195,7 +195,17 @@ func (p ProductRepoImpl) SelectProducts(context context.Context) ([]model.Produc
 	    FROM products 
 	      INNER JOIN attributes ON products.product_id = attributes.p_id
 	      INNER JOIN categories ON products.cate_id = categories.cate_id;`
-	err := p.sql.Db.Select(&products, sql)
+
+	err := p.sql.Db.SelectContext(context, &products, statement)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return products, exception.ProductEmpty
+		}
+		log.Error(err.Error())
+		return products, err
+	}
+
 	return products, err
 }
 
