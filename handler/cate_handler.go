@@ -116,26 +116,8 @@ func (c CateHandler) HandleCateList(context echo.Context) error {
 }
 
 func (c CateHandler) HandleDeleteCate(context echo.Context) error {
-	req := model.Cate{}
-	if err := context.Bind(&req); err != nil {
-		return err
-	}
-
-	// validate thông tin gửi lên
-	err := context.Validate(req)
-	if err != nil {
-		return context.JSON(http.StatusBadRequest, model.Response{
-			StatusCode: http.StatusBadRequest,
-			Message:    err.Error(),
-		})
-	}
-
-	//token := context.Get("user").(*jwt.Token)
-	//claims := token.Claims.(*model.JwtCustomClaims)
-
-	err = c.CateRepo.DeleteCate(
-		context.Request().Context(), req.CateID)
-
+	cateId := context.Param("id")
+	err := c.CateRepo.DeleteCate(context.Request().Context(), cateId)
 	if err != nil {
 		return context.JSON(http.StatusInternalServerError, model.Response{
 			StatusCode: http.StatusInternalServerError,

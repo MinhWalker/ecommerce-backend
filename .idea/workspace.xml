@@ -32,10 +32,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a9372c5d-de05-4273-8450-aaa5e1c2794b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/err_product.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception/err_product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/product.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/product.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception/err_cate.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception/err_cate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/cate_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/cate_handler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/cate_repo_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/cate_repo_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/product_repo_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/product_repo_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/api.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

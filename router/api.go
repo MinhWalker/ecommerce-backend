@@ -29,7 +29,7 @@ func (api *API) SetupRouter() {
 	categories.PUT("/edit", api.CateHandler.HandleEditCate)
 	categories.GET("/detail/:id", api.CateHandler.HandleCateDetail)
 	categories.GET("/list", api.CateHandler.HandleCateList)
-	//categories.DELETE("/delete", api.CateHandler.HandleDeleteCate)		//update last
+	categories.DELETE("/delete/:id", api.CateHandler.HandleDeleteCate)		//update last
 
 	// product
 	product := api.Echo.Group("/product", middleware.JWTMiddleware(), middleware.CheckAdminRole())

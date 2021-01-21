@@ -55,7 +55,7 @@ func (c CateRepoImpl) DeleteCate(context context.Context, cateId string) error {
 	_, err := result.RowsAffected()
 	if err != nil {
 		log.Error(err.Error())
-		return exception.DelBookmarkFail
+		return exception.CateDeleteFail
 	}
 
 	return nil
