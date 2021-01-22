@@ -37,6 +37,7 @@ func (api *API) SetupRouter() {
 	product.GET("/detail/:id", api.ProductHandler.HandleProductDetail)
 	product.GET("/list", api.ProductHandler.HandleProductList)
 	product.PUT("/edit", api.ProductHandler.HandleEditProduct)
+	product.DELETE("/delete/:id", api.ProductHandler.HandleDeleteProduct)
 
 }
 

@@ -46,7 +46,6 @@ func (c CateRepoImpl) SaveCate(context context.Context, cate model.Cate) (model.
 	return cate, nil
 }
 
-
 func (c CateRepoImpl) DeleteCate(context context.Context, cateId string) error {
 	result := c.sql.Db.MustExecContext(
 		context,
@@ -57,7 +56,6 @@ func (c CateRepoImpl) DeleteCate(context context.Context, cateId string) error {
 		log.Error(err.Error())
 		return exception.CateDeleteFail
 	}
-
 	return nil
 }
 

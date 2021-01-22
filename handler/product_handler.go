@@ -145,3 +145,21 @@ func (p ProductHandler) HandleProductList(context echo.Context) error {
 		Data:       productsRes,
 	})
 }
+
+func (p ProductHandler) HandleDeleteProduct(context echo.Context) error {
+	productId := context.Param("id")
+	err := p.ProductRepo.DeleteProductAttributes(context.Request().Context(), productId)
+	if err != nil {
+		return context.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+
+	return context.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Delete product and attributes Success!",
+		Data:       nil,
+	})
+}

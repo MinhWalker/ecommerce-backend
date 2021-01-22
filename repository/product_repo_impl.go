@@ -45,6 +45,7 @@ func (p ProductRepoImpl) SaveProduct(context context.Context, product model.Prod
 		}
 		return product, errors.New("Create new Product fail!")
 	}
+
 	return product, nil
 }
 
@@ -208,4 +209,36 @@ func (p ProductRepoImpl) SelectProducts(context context.Context) ([]model.Produc
 
 	return products, err
 }
+
+func (p ProductRepoImpl) DeleteProductAttributes(context context.Context, productId string) error  {
+	statement1 := `DELETE 
+			FROM public.attributes o
+			USING public.products u
+			WHERE o.p_id = u.product_id
+			  AND u.product_id = $1;
+			`
+	statement2 := `  
+			DELETE 
+			FROM public.products u
+			WHERE u.product_id = $1;`
+
+	result1 := p.sql.Db.MustExecContext(context, statement1, productId)
+	result2 := p.sql.Db.MustExecContext(context, statement2, productId)
+
+	_, errProduct := result1.RowsAffected()
+	if errProduct != nil {
+		log.Error(errProduct.Error())
+		return exception.DeleteProductFail
+	}
+
+	_, errAttributes := result2.RowsAffected()
+	if errAttributes != nil {
+		log.Error(errAttributes.Error())
+		return exception.DeleteAttributesFail
+	}
+
+	return nil
+}
+
+
 
