@@ -48,6 +48,6 @@ func (api *API) SetupAdminRouter() {
 	admin.GET("/token", api.AdminHandler.GenToken)
 	admin.POST("/sign-up", api.AdminHandler.HandleSignUp, middleware.JWTMiddleware())
 	admin.POST("/sign-in", api.AdminHandler.HandleSignIn)
-	//admin.DELETE("/delete/:id", api.AdminHandler)
+	admin.DELETE("/delete/:id", api.AdminHandler.HandleDeleteUser, middleware.JWTMiddleware())
 
 }

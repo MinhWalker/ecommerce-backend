@@ -197,3 +197,32 @@ func (a AdminHandler) HandleSignIn(c echo.Context) error {
 		Data:       user,
 	})
 }
+
+func (a AdminHandler) HandleDeleteUser(c echo.Context) error {
+	userId := c.Param("id")
+	tokenData := c.Get("user").(*jwt.Token)
+	claims := tokenData.Claims.(*model.JwtCustomClaims)
+
+	if claims.Role != model.ADMIN.String() {
+		return c.JSON(http.StatusForbidden, model.Response{
+			StatusCode: http.StatusForbidden,
+			Message:    http.StatusText(http.StatusForbidden),
+			Data:       nil,
+		})
+	}
+
+	err := a.UserRepo.DeleteUsers(c.Request().Context(), userId)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Delete user Success!",
+		Data:       nil,
+	})
+}
