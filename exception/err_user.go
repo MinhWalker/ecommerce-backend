@@ -8,4 +8,5 @@ var (
 	UserNotFound   = errors.New("Can't not find user")
 	UserNotUpdated = errors.New("Can't not update user!")
 	UserEmpty 	   = errors.New("Empty users list")
+	UserDeleteFail = errors.New("Delete users fail!")
 )

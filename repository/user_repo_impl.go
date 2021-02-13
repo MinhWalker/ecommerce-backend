@@ -15,13 +15,25 @@ type UserRepoImpl struct {
 	sql *db.Sql
 }
 
-
-
 // NewUserRepo create object working with user logic
 func NewUserRepo(sql *db.Sql) UserRepo {
 	return UserRepoImpl{
 		sql: sql,
 	}
+}
+
+func (u UserRepoImpl) DeleteUsers(context context.Context, userId string) error {
+	result := u.sql.Db.MustExecContext(
+		context,
+		"DELETE FROM users WHERE user_id = $1", userId)
+
+	_, err := result.RowsAffected()
+	if err != nil {
+		log.Error(err.Error())
+		return exception.UserDeleteFail
+	}
+	return nil
+
 }
 
 func (u UserRepoImpl) SaveUser(context context.Context, user model.User) (model.User, error) {

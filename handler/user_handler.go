@@ -265,3 +265,22 @@ func(u UserHandler) HandleUpdateUsers(c echo.Context) error  {
 		Data:       user,
 	})
 }
+
+func (u UserHandler) HandleDeleteUser(c echo.Context) error {
+	userId := c.Param("id")
+
+	err := u.UserRepo.DeleteUsers(c.Request().Context(), userId)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Delete user Success!",
+		Data:       nil,
+	})
+}

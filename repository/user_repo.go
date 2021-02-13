@@ -12,6 +12,5 @@ type UserRepo interface {
 	GetUserById(context context.Context, userId string) (model.User, error)
 	UpdateUser(context context.Context, user model.User) (model.User, error)
 	SelectUsers(context context.Context) ([]model.User, error)
-
-	// Product
+	DeleteUsers(context context.Context, userId string) error
 }

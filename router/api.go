@@ -22,6 +22,7 @@ func (api *API) SetupRouter() {
 	user.GET("/profile", api.UserHandler.HandleProfile, middleware.JWTMiddleware())
 	user.GET("/list", api.UserHandler.HandleListUsers, middleware.JWTMiddleware())
 	user.PUT("/update", api.UserHandler.HandleUpdateUsers, middleware.JWTMiddleware())
+	user.DELETE("/delete/:id", api.UserHandler.HandleDeleteUser, middleware.JWTMiddleware())
 
 	// categories
 	categories := api.Echo.Group("/cate", middleware.JWTMiddleware(), middleware.CheckAdminRole())
@@ -47,5 +48,6 @@ func (api *API) SetupAdminRouter() {
 	admin.GET("/token", api.AdminHandler.GenToken)
 	admin.POST("/sign-up", api.AdminHandler.HandleSignUp, middleware.JWTMiddleware())
 	admin.POST("/sign-in", api.AdminHandler.HandleSignIn)
+	//admin.DELETE("/delete/:id", api.AdminHandler)
 
 }
