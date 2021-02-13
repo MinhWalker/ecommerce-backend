@@ -206,7 +206,7 @@ func (a AdminHandler) HandleDeleteUser(c echo.Context) error {
 	if claims.Role != model.ADMIN.String() {
 		return c.JSON(http.StatusForbidden, model.Response{
 			StatusCode: http.StatusForbidden,
-			Message:    http.StatusText(http.StatusForbidden),
+			Message:    "You do not have permission to access",
 			Data:       nil,
 		})
 	}
